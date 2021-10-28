@@ -9,9 +9,9 @@ const App = ({ children }) => (
 		<div className={styles.block}>
 			<Header />
 			{children}
-			<Footer />
 		</div>
 		<div className={styles.outblock} />
+		<Footer />
 	</>
 );
 
