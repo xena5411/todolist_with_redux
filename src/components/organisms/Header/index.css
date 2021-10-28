@@ -1,0 +1,16 @@
+.header {
+	color: ivory;
+	letter-spacing: 10px;
+	padding: 10px;
+	padding-left: 30px;
+	text-align: left;
+
+
+	@media screen and (--phone), screen and (--tablet) {
+		& {
+			color: white;
+		}
+	}
+
+	
+}

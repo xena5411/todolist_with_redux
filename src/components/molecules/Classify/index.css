@@ -1,0 +1,73 @@
+.main{
+    position: absolute;
+    right: 30px;
+    left: 30px;
+	bottom: 20px;
+	height: 25px;
+    border-top: 0.5px solid rgba(0, 0, 0, 0.089);
+	padding-top: 10px;
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+	color: rgba(0, 0, 0, 0.363);
+	font-size: 15px;
+}
+
+.total{
+	position: relative;
+	width: 40px;
+}
+
+.view_buttons{
+	display: flex;
+    margin: 0;
+    margin-left: 2em;
+    padding: 0;
+    width: 10em;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}
+
+.view_buttons button {
+	color: rgba(0, 0, 0, 0.363);
+    padding: 5px;
+    font-weight: inherit;
+    border: 1px dotted rgba(0, 0, 0, 0.26);
+    border-radius: 5px;
+    cursor: pointer;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.view_buttons button:focus {
+    outline: none;
+	color: rgb(141, 69, 2);
+
+}
+
+.clean {
+    vertical-align: middle;
+}
+
+.clean button {
+	color: rgba(0, 0, 0, 0.363);
+    padding: 5px;
+    border: 1px dotted rgba(0, 0, 0, 0.26);
+    border-radius: 5px;
+    font-weight: inherit;
+    cursor: pointer;
+	background-color: rgba(255, 255, 255, 0);
+
+}
+
+.clean button:focus {
+    outline: none;
+	color: rgb(141, 69, 2);
+
+}
+
+button:hover {
+    text-decoration: underline;
+}
