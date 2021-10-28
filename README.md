@@ -1,49 +1,32 @@
-# react
-
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/) [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg?style=flat-square)](https://github.com/conventional-changelog/standard-version)
-
-_新芽網路前端開發架構_
+# Todolist with Redux
 
 ## 簡介
 
-經由 `react-starter` 快速產生的專案，內建 `react` 開發用環境。
-
-## 資源介紹
-
-使用 `webpack` 做建置工具，專案架構使用 `universal-router`、`redux`，搭配 `eslint`、`react-storybook` 與 `jest` 開發，支援 `ES6`、`stage-3` 語法。
+練習使用Redux來寫出todolist，也順便練習了RWD的排版。
+功能有: 
+- 新增: 在'Why are you free now?' 處打字並enter送出
+- 勾選: 滑鼠點選每個項目最左側的圓圈，按下出現打勾字樣並將該項目新增刪除線
+- 刪除: 滑鼠滑動至欲刪除的項目時，項目最右側會出現叉叉圖樣，點選即可刪除。
+- 修改: 滑鼠點選項目文字內容，出現打字格，打完新內容之後點選其他任意地方即完成更新，若沒有打字就點選其他地方則內容保持不變
+- 分類: 下方三選項可分別顯示全部、未完成、已完成。
+- 刪除所有已完成: 下方右邊按鈕可一次刪除所有已完成的項目。
+- 顯示未完成項目數量: 下方左邊顯示。
 
 ## 如何開始
 
 - 安裝 nodejs v8 以上的版本
-- 安裝套件: `npm i` or `yarn`
+- 安裝套件: `yarn`
 
 #### 踏出第一步
 
 啟動開發 server
 
 ```
-npm start
+yarn start
 ```
 
 便可在 <http://localhost:3000> 看到本地伺服器～
 
-啟動 storybook server
-
-```
-npm run storybook
-```
-
-便可在 <http://localhost:8000> 看到 storybook 開發伺服器～
-
-#### npm script
-
-- **npm start**: 啟動開發 server
-- **npm run dev**: 跟 `npm start` 一樣
-- **npm run demo**: 使用 `demo` 參數打包專案，部署在測試機。
-- **npm run build**: 使用 `production` 參數打包專案，部署在正式機。
-- **npm run lint**: 跑 eslint 跟 stylelint 檢查 coding style
-- **npm run storybook**: 跑 storybook
-- **npm test**: 跑 jest 測試
 
 ## 專案架構
 
@@ -67,61 +50,4 @@ npm run storybook
 
 > 0.8.0 之後 component 的 stories 和 test case 移至各自的 component 資料夾裡面
 
-## 參數設定
 
-#### 環境變數
-
-以下是 `npm run dev`, `npm run build:demo`, `npm run build` 各自對應的環境變數
-
-| script         | NODE_ENV   | PROXY      | API        |
-| -------------- | ---------- | ---------- | ---------- |
-| dev:demo       | devlopment | demo       | dev        |
-| dev:production | devlopment | production | dev        |
-| build:demo     | devlopment |            | demo       |
-| build          | production |            | production |
-
-#### CSS 標準色
-
-CSS 所用的全域變數，可以於 `config/palette.js` 設定整個網站的標準色等。
-
-```javascript
-export default {
-	standard: '#999',
-	secondary: '#DDD',
-	darkBlack: '#404040',
-};
-```
-
-#### CSS Media Query 設置
-
-CSS 所用的全域變數，可以於 `config/media.js` 設定整個網站的 media query。
-
-```javascript
-export default {
-	'--phone': '(width < 600px)',
-	'--small-tablet': '(900px > width >= 600px)',
-	'--tablet': '(1200px > width >= 900px)',
-	'--desktop': '(width >= 1200px)',
-};
-```
-
-## Contribution
-
-此專案 commit message 使用 angular format ，並使用 [commitizen](http://commitizen.github.io/cz-cli/) 輔助產生 commit message
-
-- 加入修改的檔案 `git add .`
-- 產生 commit message `npm run commit`
-
-## Release
-
-此專案使用 [standard-version](https://github.com/conventional-changelog/standard-version) 輔助 release 流程，自動產生 `CHANGELOG.md` 和 提升版本號（提升 major version 依據是否有 `feat` 來判斷）
-
-- `npm run release`
-
-可以自己決定 提升 patch, minor or major
-
-- `npm run release -- --release-as minor`
-
-**Warning**: 第一次 release 請下
-
-- `npm run release -- --first-release`
