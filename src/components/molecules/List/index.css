@@ -1,13 +1,11 @@
-.list{
-    list-style: none;
-    overflow: auto;
-    margin: 0 auto;
-    position: absolute;
-    top: 19%;
-    bottom: 0;
-    left: 0%;
-    right:0%;
-    background-color: rgba(255, 255, 255, 0.178);
-    border-radius: 10px;
-    padding: 0;
+.list {
+	height: 365px;
+	overflow-y: scroll;
+	background-color: rgba(255, 255, 255, 0.178);
+	border-radius: 10px;
+	padding: 0;
+
+	@media screen and (min-height: 825px) {
+		height: 1000px;
+	}
 }

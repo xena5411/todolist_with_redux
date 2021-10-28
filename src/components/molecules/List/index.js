@@ -1,35 +1,31 @@
-import React, { memo, useState, useEffect } from "react";
-import Item from "../../atoms/Item"
-import styles from "./index.css";
+import React, { memo, useState, useEffect } from 'react';
 import { useList, useFilter } from 'models/todo';
+import Item from '../../atoms/Item';
+import styles from './index.css';
 
 const List = () => {
-  const [{ list }, ] =  useList();
-  const [{ filter }, ] = useFilter();
-  const [showList, setShowList] = useState(list);
+	const [{ list }] = useList();
+	const [{ filter }] = useFilter();
+	const [showList, setShowList] = useState(list);
 
-  useEffect(() => {
+	useEffect(() => {
 		if (filter === 1) {
 			setShowList(list.filter(i => !i.finished));
-			return;
-		}
-		else if (filter === 2) {
+		} else if (filter === 2) {
 			setShowList(list.filter(i => i.finished));
-			return;
-		} else{ //filter == 0
+		} else {
+			// filter == 0
 			setShowList(list);
-			return;
 		}
 	}, [filter, list]);
 
-  return (
+	return (
 		<ul className={styles.list}>
 			{showList.map(item => (
 				<Item key={item.id} item={item} />
 			))}
 		</ul>
-	);  
-}
-
+	);
+};
 
 export default memo(List);
