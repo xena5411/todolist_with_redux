@@ -1,54 +1,56 @@
 import { createAction, handleActions } from 'redux-actions';
 import { useRedux } from 'util/hook/redux';
 
-export const addItem = createAction('ADD_ITEM');  //增加
-export const deleteItem = createAction('DELETE_ITEM'); //刪除某項
-export const toggleEditItem = createAction('TOGGLE_EDIT_ITEM'); //屬性更改 出不出現編輯框
-export const editItem = createAction('EDIT_ITEM'); //編輯修改某項目
-export const toggleFinishedItem = createAction('TOGGLE_FINISHED_ITEM'); //屬性更改 打不打勾某項目
-export const deleteAllFinished = createAction('DELETE_ALL_FINISHED'); //刪掉全部有完成的項目
+export const addItem = createAction('ADD_ITEM'); // 增加
+export const deleteItem = createAction('DELETE_ITEM'); // 刪除某項
+export const toggleEditItem = createAction('TOGGLE_EDIT_ITEM'); // 屬性更改 出不出現編輯框
+export const editItem = createAction('EDIT_ITEM'); // 編輯修改某項目
+export const toggleFinishedItem = createAction('TOGGLE_FINISHED_ITEM'); // 屬性更改 打不打勾某項目
+export const deleteAllFinished = createAction('DELETE_ALL_FINISHED'); // 刪掉全部有完成的項目
 
-export const setFilter = createAction('SET_FILTER'); //屬性是全部(0)、未完成(1)、完成(2)
+export const setFilter = createAction('SET_FILTER'); // 屬性是全部(0)、未完成(1)、完成(2)
 
 let Id = 0;
 
 const reducer = {
 	list: handleActions(
 		{
-			ADD_ITEM: (state, action) => { //action payload : value
+			ADD_ITEM: (state, action) => {
+				// action payload : value
 				const inputData = {
 					id: Id,
 					content: action.payload.value,
 					editing: false,
 					finished: false,
 				};
-				Id++;
+				Id += 1;
 				let leftnum = state.left;
-				leftnum++;
+				leftnum += 1;
 				return {
 					...state,
 					data: [inputData, ...state.data],
-					left: leftnum
+					left: leftnum,
 				};
 			},
 
-			DELETE_ITEM: (state, action) => { //action payload : id
+			DELETE_ITEM: (state, action) => {
+				// action payload : id
 				let leftnum = state.left;
-				const fixedList = state.data.filter((item) => {
-					if(item.id !== action.payload.id) return true;
-					else{
-						if(!item.finished) leftnum--;
-						return false;
-					}
-				})
+				const fixedList = state.data.filter(item => {
+					if (item.id !== action.payload.id) return true;
+
+					if (!item.finished) leftnum -= 1;
+					return false;
+				});
 				// if(!(listData[action.payload.id].finished)){left--;}
 				// listData.splice(action.payload.id, 1); // replaces 1 element at index "action.payload.id"
-				return { ...state, data: fixedList, left: leftnum};
+				return { ...state, data: fixedList, left: leftnum };
 			},
 
-			TOGGLE_EDIT_ITEM: (state, action) => { //action payload : id
+			TOGGLE_EDIT_ITEM: (state, action) => {
+				// action payload : id
 				const listData = state.data;
-				listData.map((item) => {
+				listData.map(item => {
 					if (item.id === action.payload.id) item.editing = !item.editing;
 					return item;
 				});
@@ -56,9 +58,10 @@ const reducer = {
 				return { ...state, data: listData };
 			},
 
-			EDIT_ITEM: (state, action) => { //action payload : id, value
+			EDIT_ITEM: (state, action) => {
+				// action payload : id, value
 				const listData = state.data;
-				listData.map((item) => {
+				listData.map(item => {
 					if (item.id === action.payload.id) item.content = action.payload.value;
 					return item;
 				});
@@ -66,42 +69,43 @@ const reducer = {
 				return { ...state, data: listData };
 			},
 
-			TOGGLE_FINISHED_ITEM: (state, action) => { //action payload : id
+			TOGGLE_FINISHED_ITEM: (state, action) => {
+				// action payload : id
 				const listData = state.data;
 				let leftnum = state.left;
-				listData.map((item) => {
-					if (item.id === action.payload.id){
-						if (item.finished){
-							leftnum++;
+				listData.map(item => {
+					if (item.id === action.payload.id) {
+						if (item.finished) {
+							leftnum += 1;
 							item.finished = false;
-						}
-						else{
-							leftnum--;
+						} else {
+							leftnum -= 1;
 							item.finished = true;
 						}
 					}
 					return item;
 				});
-				return { ...state, data: listData, left: leftnum};
+				return { ...state, data: listData, left: leftnum };
 			},
 
-			DELETE_ALL_FINISHED: (state) => { //不用payload
-				const fixedList = state.data.filter((item) => {
-					if(item.finished) return false;
+			DELETE_ALL_FINISHED: state => {
+				// 不用payload
+				const fixedList = state.data.filter(item => {
+					if (item.finished) return false;
 					return true;
-				})
-				return { ...state, data: fixedList};
-			}, 
+				});
+				return { ...state, data: fixedList };
+			},
 		},
 		{
 			data: [],
 			left: 0,
 		},
-
 	),
 	filter: handleActions(
 		{
-			SET_FILTER: (state, action) => { //payload : mode (0, 1, 2)
+			SET_FILTER: (state, action) => {
+				// payload : mode (0, 1, 2)
 				return { ...state, mode: action.payload };
 			},
 		},
@@ -127,7 +131,7 @@ export const useList = () =>
 		editItem,
 		toggleFinishedItem,
 		deleteAllFinished,
-		addItem
+		addItem,
 	});
 
 export const useFilter = () => useRedux(filterSelector, { setFilter });
