@@ -6,7 +6,7 @@ import { HistoryContext } from 'models/routing';
 
 import useRouter from 'util/hook/useRouter';
 
-const Loading = () => <div>Loading...</div>;
+const Loading = () => <div> ~~~~ Loading ~~~~ 公資部萬歲 ~~~ </div>;
 
 const Router = ({ routes, history, store }) => {
 	const { loading, component } = useRouter(routes, history, store);

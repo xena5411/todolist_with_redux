@@ -17,7 +17,7 @@ const NewItem = () => {
 		<form onSubmit={handleSubmit}>
 			<input
 				className={styles.addItem}
-				placeholder="Why are you free now?"
+				placeholder="輸入文字可以加新工作，順便加薪好ㄇ"
 				value={newItem}
 				onChange={e => {
 					setNewItem(e.target.value);

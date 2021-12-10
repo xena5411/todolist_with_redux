@@ -10,7 +10,7 @@ export const deleteAllFinished = createAction('DELETE_ALL_FINISHED'); // 刪掉�
 
 export const setFilter = createAction('SET_FILTER'); // 屬性是全部(0)、未完成(1)、完成(2)
 
-let Id = 0;
+let Id = 7;
 
 const reducer = {
 	list: handleActions(
@@ -98,8 +98,51 @@ const reducer = {
 			},
 		},
 		{
-			data: [],
-			left: 0,
+			data: [
+				{
+					content: '發DM的排班文',
+					editing: false,
+					finished: true,
+					id: 0,
+				},
+				{
+					content: '新歌上架 - 茉莉、群青、布蘭詩歌',
+					editing: false,
+					finished: true,
+					id: 1,
+				},
+				{
+					content: '副頻道上架影片、short',
+					editing: false,
+					finished: true,
+					id: 2,
+				},
+				{
+					content: '副頻道徵稿!!',
+					editing: false,
+					finished: false,
+					id: 3,
+				},
+				{
+					content: 'YT留言和B站彈幕檢查',
+					editing: false,
+					finished: true,
+					id: 4,
+				},
+				{
+					content: '8 萬訂閱感謝圖文',
+					editing: false,
+					finished: false,
+					id: 5,
+				},
+				{
+					content: '(公演完)帶小骨頭練習上字幕、架網站',
+					editing: false,
+					finished: false,
+					id: 6,
+				},
+			],
+			left: 3,
 		},
 	),
 	filter: handleActions(
